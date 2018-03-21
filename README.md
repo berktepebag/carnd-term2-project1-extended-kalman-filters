@@ -26,17 +26,23 @@ Step 2: Install [mobaxterm](https://mobaxterm.mobatek.net/) so you can use Subli
 
 Step 3: Instead of Step 1 and 2 you can follow this [thread](https://nickjanetakis.com/blog/using-wsl-and-mobaxterm-to-create-a-linux-dev-environment-on-windows#wsl-conemu-and-mobaxterm-to-the-rescue) which also explains how to install Sublime, a nice text editor to be used on Ubuntu.
 
-[//]: # (Image References)
-[image1]: ./images/extended kalman filter result.JPG "Data Set 1: Full Run"
-[image2]: ./images/extended kalman filter detail.JPG "Data Set 1: Detail"
-[image3]: ./images/extended kalman filter detail data2.JPG "Data Set 2: Full Run"
+#### Data Set 1 Full Run 
+<img width="500" alt="Data Set 1: Full Run" src="/images/extended%20kalman%20filter%20result.JPG">
 
-![alt text][image1]
+#### Data Set 1 Detail
+<img width="500" alt="Data Set 1: Detail" src="/images/extended%20kalman%20filter%20detail.JPG">
 
-In the third cell defined convert_color() to find out which color space fits best with the example images. Defined get_hog_features() using skimage.hog() and bin_spatial(), color_hist() definitions which we will feed into extract_features() to obtain hog features from it.
+#### Data Set 1 Fail
+<img width="500" alt="What Is Going On?" src="/images/What_is_going_on.jpg">
+Why is this happening? 
 
+Altough we have proper radar and lidar data at the curvature we are exceeding 2xPi at Y direction. So we should be limiting the maximum angle between -Pi and Pi with:
 
+```
+if (Y(1) *180/pi > 360){
+		Y(1) = 0.001;
+	}
+```
 
- 
-
-
+#### Data Set 2 Full Run 
+<img width="500" alt="Data Set 2: Full Run" src="/images/extended%20kalman%20filter%20detail%20data2.JPG">
